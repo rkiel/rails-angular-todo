@@ -1,0 +1,13 @@
+<div ng-controller="TodoCtrl">
+
+<div>
+  <input type="text" ng-model="vm.description" placeholder="Enter a todo" />
+  <button ng-click="add()">Add</button>
+</div>
+
+
+  <ul>
+    <li ng-repeat="item in vm.items" ng-click="remove(item.id)">{{item.description}}</li>
+  </ul>
+
+</div>
