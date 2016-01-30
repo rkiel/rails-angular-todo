@@ -1,4 +1,13 @@
-## Angular Rails
+## Rails Angular Todo
+
+#### A simple to-do list experiment with Rails and Angular
+
+
+Create the vagrant server.
+
+```unix
+vagrant up
+```
 
 Connect to the vagrant server.
 
