@@ -70,6 +70,10 @@ Create a new project
 heroku create
 ```
 
+heroku config:set SECRET_KEY_BASE=`rake secret`
+heroku config:get SECRET_KEY_BASE
+
+
 Push your code to Heroku
 
 ```unix
@@ -81,3 +85,8 @@ Run your migrations
 ```unix
 heroku run rake db:migrate
 ```
+
+Open up your browser.
+
+[https://still-hollows-56878.herokuapp.com](https://still-hollows-56878.herokuapp.com)
+
