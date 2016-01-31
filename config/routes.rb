@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/new'
+  get 'users/create'
+  get 'users/destroy'
+
+  get 'hornburg/approach'
+  get 'hornburg/knock'
+  get 'hornburg/leave'
+
   get 'home/index'
 
   resources :todos
