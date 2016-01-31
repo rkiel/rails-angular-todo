@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 class HornburgController < ApplicationController
 
   def approach
@@ -7,9 +9,7 @@ class HornburgController < ApplicationController
     user = User.find_by(email: params[:email])
     # If the user exists AND the password entered is correct.
     if user && user.authenticate(params[:password])
-      # Save the user id inside the browser cookie. This is how we keep the user 
-      # logged in when they navigate around our website.
-      session[:user_uuid] = user.uuid
+      session[:jwt_token] = JsonWebToken.encode(JsonWebToken.payload_for(user))
       redirect_to root_path
     else
     # If user's login doesn't work, send them back to the login form.
@@ -18,7 +18,7 @@ class HornburgController < ApplicationController
   end
 
   def leave
-    session[:user_uuid] = nil
+    session[:jwt_token] = nil
     redirect_to hornburg_approach_path
   end
 

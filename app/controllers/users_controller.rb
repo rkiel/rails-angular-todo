@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 class UsersController < ApplicationController
 
   def new
@@ -9,7 +11,7 @@ class UsersController < ApplicationController
     user.uuid = SecureRandom.uuid
 
     if User.find_by(email: user.email).nil? and user.save
-      session[:user_uuid] = user.uuid
+      session[:jwt_token] = JsonWebToken.encode(JsonWebToken.payload_for(user))
       redirect_to root_path
     else
       redirect_to users_new_path
@@ -24,4 +26,5 @@ private
   def user_params
     params.require(:user).permit(:first, :last, :email, :password, :password_confirmation)
   end
+
 end

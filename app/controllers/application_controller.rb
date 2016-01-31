@@ -1,4 +1,5 @@
 require 'angular_csrf_protection'
+require 'json_web_token'
 
 class ApplicationController < ActionController::Base
 
@@ -10,14 +11,14 @@ class ApplicationController < ActionController::Base
 
   after_filter :set_csrf_cookie_for_ng
 
-  def current_user
-    @current_user ||= User.find_by(uuid: session[:user_uuid]) if session[:user_uuid]
+  def current_token
+    @current_token ||= JsonWebToken.user_from(JsonWebToken.decode(session[:jwt_token])) if session[:jwt_token]
   end
 
-  helper_method :current_user
+  helper_method :current_token
 
   def authorize
-    redirect_to hornburg_approach_path unless current_user
+    redirect_to hornburg_approach_path unless current_token
   end
 
 end
