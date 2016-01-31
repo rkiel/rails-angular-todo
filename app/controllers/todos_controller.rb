@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
 
+  before_filter :authorize
+
   def index
     render json: Todo.all
   end
@@ -13,4 +15,5 @@ class TodosController < ApplicationController
     Todo.find(params[:id]).destroy
     render json: {}, status: :no_content
   end
+
 end

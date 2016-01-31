@@ -56,6 +56,14 @@ Open up your browser.
 
 [http://192.168.33.10:3000](http://192.168.33.10:3000)
 
+
+
+```unix
+rails generate model user first last email:index uuid:index password_digest
+```
+
+
+
 #### Deploy to heroku
 
 Login to your Heroku account

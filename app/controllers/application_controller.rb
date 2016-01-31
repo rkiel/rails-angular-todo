@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
+  def current_user
+    @current_user ||= User.find_by(uuid: session[:user_uuid]) if session[:user_uuid]
+  end
+
+  helper_method :current_user
+
+  def authorize
+    redirect_to hornburg_approach_path unless current_user
+  end
+
   protected
 
   def verified_request?

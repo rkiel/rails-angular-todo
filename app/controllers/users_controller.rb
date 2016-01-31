@@ -8,11 +8,11 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     user.uuid = SecureRandom.uuid
 
-    if user.save
+    if User.find_by(email: user.email).nil? and user.save
       session[:user_uuid] = user.uuid
-      redirect_to '/'
+      redirect_to root_path
     else
-      redirect_to '/users/new'
+      redirect_to users_new_path
     end
   end
 

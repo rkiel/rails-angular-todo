@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'users/new'
-  get 'users/create'
+  post 'users/create'
   get 'users/destroy'
 
   get 'hornburg/approach'
-  get 'hornburg/knock'
+  post 'hornburg/knock'
   get 'hornburg/leave'
 
   get 'home/index'
