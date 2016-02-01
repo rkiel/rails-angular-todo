@@ -6,6 +6,6 @@ class CreateTodos < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :todos, :uuid
+    #add_index :todos, :uuid
   end
 end
