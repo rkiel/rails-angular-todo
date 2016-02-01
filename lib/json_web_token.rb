@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class JsonWebToken
 
   def self.encode(payload)
@@ -27,9 +29,7 @@ class JsonWebToken
   end
 
   def self.user_from( payload )
-    user = {
-      uuid: payload["sub"]
-    }
+    user = OpenStruct.new( uuid: payload["sub"] )
 
     user
   end
