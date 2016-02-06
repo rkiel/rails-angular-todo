@@ -1,15 +1,15 @@
 <%= link_to 'Logout', hornburg_leave_path %>
 
-<div ng-controller="TodoController">
+<div ng-controller="TodoController as todo">
 
 <div>
-  <input type="text" ng-model="vm.description" placeholder="Enter a todo" />
-  <button ng-click="add()">Add</button>
+  <input type="text" ng-model="todo.vm.description" placeholder="Enter a todo" />
+  <button ng-click="todo.add()">Add</button>
 </div>
 
 
   <ul>
-    <li ng-repeat="item in vm.items" ng-click="remove(item.id)">{{item.description}}</li>
+    <li ng-repeat="item in todo.vm.items" ng-click="todo.remove(item.id)">{{item.description}}</li>
   </ul>
 
 </div>

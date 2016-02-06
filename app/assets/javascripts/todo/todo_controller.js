@@ -5,25 +5,27 @@
   .module("application")
   .controller("TodoController", TodoController);
 
-  TodoController.$inject = ["$scope","$log","Todo"];
+  TodoController.$inject = ["$log","Todo"];
 
-  function TodoController($scope,$log,Todo) {
+  function TodoController($log,Todo) {
+
+    var scope = this;
 
     function index() {
       return Todo
              .query()
              .$promise
              .then(function success(results) {
-                     $scope.vm.items = results;
+                     scope.vm.items = results;
                    });
     }
 
-    $scope.vm = {
+    scope.vm = {
       description: "",
       items: Todo.query()
     }
 
-    $scope.remove = function(id) {
+    scope.remove = function(id) {
       Todo
       .remove({id: id})
       .$promise
@@ -31,12 +33,12 @@
     }
 
 
-    $scope.add = function() {
+    scope.add = function() {
       Todo
-      .save({description: $scope.vm.description})
+      .save({description: scope.vm.description})
       .$promise
       .then(index);
-      $scope.vm.description = "";
+      scope.vm.description = "";
     }
 
   }
