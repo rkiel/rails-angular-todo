@@ -1,40 +1,44 @@
-angular
-.module("application")
-.controller("TodoCtrl", [
-    "$scope",
-    "$log",
-    "Todo",
-    function($scope,$log,Todo) {
+(function() {
+  'use strict';
 
-      function index() {
-        return Todo
-               .query()
-               .$promise
-               .then(function success(results) {
-                       $scope.vm.items = results;
-                     });
-      }
+  angular
+  .module("application")
+  .controller("TodoController", TodoController);
 
-      $scope.vm = {
-        description: "",
-        items: Todo.query()
-      }
+  TodoController.$inject = ["$scope","$log","Todo"];
 
-      $scope.remove = function(id) {
-        Todo
-        .remove({id: id})
-        .$promise
-        .then(index);
-      }
+  function TodoController($scope,$log,Todo) {
 
-
-      $scope.add = function() {
-        Todo
-        .save({description: $scope.vm.description})
-        .$promise
-        .then(index);
-        $scope.vm.description = "";
-      }
-
+    function index() {
+      return Todo
+             .query()
+             .$promise
+             .then(function success(results) {
+                     $scope.vm.items = results;
+                   });
     }
-]);
+
+    $scope.vm = {
+      description: "",
+      items: Todo.query()
+    }
+
+    $scope.remove = function(id) {
+      Todo
+      .remove({id: id})
+      .$promise
+      .then(index);
+    }
+
+
+    $scope.add = function() {
+      Todo
+      .save({description: $scope.vm.description})
+      .$promise
+      .then(index);
+      $scope.vm.description = "";
+    }
+
+  }
+
+})();
