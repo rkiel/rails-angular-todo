@@ -9,21 +9,22 @@
 
   function TodoController($log,Todo) {
 
-    var scope = this;
+    var vm = this;
+    vm.description =  "";
+    vm.items = Todo.query();
+    vm.remove = remove;
+    vm.add = add;
 
     function index() {
       return Todo
              .query()
              .$promise
              .then(function success(results) {
-                     scope.items = results;
+                     vm.items = results;
                    });
     }
 
-    scope.description =  "";
-    scope.items = Todo.query();
-
-    scope.remove = function(id) {
+    function remove(id) {
       Todo
       .remove({id: id})
       .$promise
@@ -31,12 +32,12 @@
     }
 
 
-    scope.add = function() {
+    function add() {
       Todo
-      .save({description: scope.description})
+      .save({description: vm.description})
       .$promise
       .then(index);
-      scope.description = "";
+      vm.description = "";
     }
 
   }
