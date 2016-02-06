@@ -16,14 +16,12 @@
              .query()
              .$promise
              .then(function success(results) {
-                     scope.vm.items = results;
+                     scope.items = results;
                    });
     }
 
-    scope.vm = {
-      description: "",
-      items: Todo.query()
-    }
+    scope.description =  "";
+    scope.items = Todo.query();
 
     scope.remove = function(id) {
       Todo
@@ -35,10 +33,10 @@
 
     scope.add = function() {
       Todo
-      .save({description: scope.vm.description})
+      .save({description: scope.description})
       .$promise
       .then(index);
-      scope.vm.description = "";
+      scope.description = "";
     }
 
   }
