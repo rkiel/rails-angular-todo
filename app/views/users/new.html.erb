@@ -1,10 +1,24 @@
+<h2>Signup</h2>
+
 <%= form_for :user, url: users_create_path do |f| %>
 
+<div>
   First: <%= f.text_field :first %>
+</div>
+<div>
   Last: <%= f.text_field :last %>
+</div>
+<div>
   Email: <%= f.text_field :email %>
+</div>
+<div>
   Password: <%= f.password_field :password %>
+</div>
+<div>
   Password Confirmation: <%= f.password_field :password_confirmation %>
+</div>
+<div>
   <%= f.submit "Submit" %>
+</div>
 
 <% end %>
