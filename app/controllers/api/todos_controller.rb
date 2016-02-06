@@ -1,4 +1,4 @@
-class TodosController < ApplicationController
+class API::TodosController < ApplicationController
 
   before_filter :authorize
 

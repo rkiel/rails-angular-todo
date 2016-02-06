@@ -4,7 +4,7 @@ angular
     "$resource",
     function($resource) {
       return $resource(
-        '/todos/:id',
+        '/api/todos/:id',
         {id: '@id', format: 'json'}
       );
     }
