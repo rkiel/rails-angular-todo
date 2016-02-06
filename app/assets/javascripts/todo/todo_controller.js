@@ -2,15 +2,15 @@
   'use strict';
 
   angular
-  .module("application")
-  .controller("TodoController", TodoController);
+  .module('application')
+  .controller('TodoController', TodoController);
 
-  TodoController.$inject = ["$log","Todo"];
+  TodoController.$inject = ['$log','Todo'];
 
   function TodoController($log,Todo) {
 
     var vm = this;
-    vm.description =  "";
+    vm.description =  '';
     vm.items = Todo.query();
     vm.remove = remove;
     vm.add = add;
@@ -37,7 +37,7 @@
       .save({description: vm.description})
       .$promise
       .then(index);
-      vm.description = "";
+      vm.description = '';
     }
 
   }
